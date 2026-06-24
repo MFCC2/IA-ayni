@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: AgroVision AI</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        agro: {
+                            light: '#e8f5e9',
+                            main: '#2e7d32',
+                            dark: '#1b5e20',
+                            accent: '#ffb300',
+                            danger: '#e53935'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        
+        /* Animaciones para el scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Línea conectora del diagrama */
+        .flow-line::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #2e7d32;
+            top: 100%;
+            left: 50%;
+            height: 2rem;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+        .flow-line:last-child::after {
+            display: none;
+        }
+        
+        .branch-line {
+            position: relative;
+        }
+        .branch-line::before {
+            content: '';
+            position: absolute;
+            top: -2rem;
+            left: 50%;
+            width: 50%;
+            height: 2px;
+            background-color: #2e7d32;
+        }
+        .branch-line.left::before {
+            left: 50%;
+            width: 50%;
+        }
+        .branch-line.right::before {
+            right: 50%;
+            left: auto;
+            width: 50%;
+        }
+        
+        /* Gradiente de fondo del Header */
+        .bg-hero {
+            background: linear-gradient(135deg, #1b5e20 0%, #4caf50 100%);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- HEADER / HERO -->
+    <header class="bg-hero text-white py-20 px-6 text-center shadow-lg relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <i data-lucide="leaf" class="absolute top-10 left-10 w-32 h-32 transform -rotate-45"></i>
+            <i data-lucide="sun" class="absolute top-20 right-20 w-40 h-40"></i>
+        </div>
+        <div class="max-w-4xl mx-auto relative z-10 fade-in">
+            <div class="inline-block bg-white text-agro-dark font-bold px-4 py-1 rounded-full text-sm mb-4 uppercase tracking-wider shadow-sm">
+                Proyecto: Los Benditos
+            </div>
+            <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">AgroVision AI</h1>
+            <p class="text-xl md:text-2xl font-light opacity-90 max-w-2xl mx-auto">
+                Sistema Inteligente de Diagnóstico y Predicción de Enfermedades en Cultivos.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-6 py-12 space-y-24">
+
+        <!-- SECCIÓN 1: LA PROBLEMÁTICA -->
+        <section class="fade-in">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-agro-dark flex items-center justify-center gap-3">
+                    <i data-lucide="alert-triangle" class="text-agro-danger w-8 h-8"></i>
+                    La Problemática Actual
+                </h2>
+                <p class="text-gray-600 mt-3 max-w-2xl mx-auto">La agricultura enfrenta desafíos críticos que generan grandes pérdidas económicas debido a la falta de herramientas tecnológicas accesibles.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-agro-danger hover:shadow-lg transition">
+                    <div class="bg-red-100 w-14 h-14 rounded-full flex items-center justify-center mb-4 text-agro-danger">
+                        <i data-lucide="clock"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Diagnóstico Tardío</h3>
+                    <p class="text-sm text-gray-600">Las enfermedades son identificadas solo cuando los daños ya son visibles y muy difíciles de controlar.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-agro-accent hover:shadow-lg transition">
+                    <div class="bg-yellow-100 w-14 h-14 rounded-full flex items-center justify-center mb-4 text-agro-accent">
+                        <i data-lucide="cloud-lightning"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Incertidumbre Climática</h3>
+                    <p class="text-sm text-gray-600">Alta humedad y lluvias intensas favorecen la rápida propagación de plagas sin que el agricultor pueda anticiparlo.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl shadow-md border-t-4 border-orange-500 hover:shadow-lg transition">
+                    <div class="bg-orange-100 w-14 h-14 rounded-full flex items-center justify-center mb-4 text-orange-500">
+                        <i data-lucide="user-x"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Falta de Especialistas</h3>
+                    <p class="text-sm text-gray-600">En zonas rurales, el acceso a agrónomos es muy limitado, dejando al agricultor sin asesoría oportuna.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: LA SOLUCIÓN -->
+        <section class="bg-agro-light rounded-3xl p-8 md:p-12 shadow-inner fade-in">
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-bold text-agro-dark mb-4">La Solución: AgroVision AI</h2>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Una herramienta capaz de diagnosticar enfermedades de manera rápida y precisa a partir de una simple fotografía de la hoja afectada, complementada con datos meteorológicos en tiempo real.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <div class="bg-agro-main text-white p-2 rounded-full"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <span class="font-medium text-gray-800">Detección temprana con Inteligencia Artificial.</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="bg-agro-main text-white p-2 rounded-full"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <span class="font-medium text-gray-800">Integración de factores ambientales (Temperatura, Humedad).</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <div class="bg-agro-main text-white p-2 rounded-full"><i data-lucide="check" class="w-4 h-4"></i></div>
+                            <span class="font-medium text-gray-800">Prevención de pérdidas económicas.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <!-- Representación abstracta del sistema -->
+                    <div class="relative w-64 h-64 bg-white rounded-full shadow-2xl flex items-center justify-center border-8 border-agro-light">
+                        <i data-lucide="smartphone" class="w-24 h-24 text-gray-800 relative z-10"></i>
+                        <i data-lucide="scan" class="w-32 h-32 text-agro-main absolute z-20 opacity-80 animate-pulse"></i>
+                        <div class="absolute top-0 right-0 bg-agro-accent text-white p-3 rounded-full shadow-lg transform translate-x-4 -translate-y-4">
+                            <i data-lucide="cloud" class="w-8 h-8"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: ENTRENAMIENTO Y DATA -->
+        <section class="fade-in">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-bold text-agro-dark flex items-center justify-center gap-3">
+                    <i data-lucide="database" class="text-agro-main w-8 h-8"></i>
+                    El Cerebro detrás de la IA
+                </h2>
+                <p class="text-gray-600 mt-2">¿Cómo aprendió el sistema a identificar enfermedades?</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Dataset -->
+                <div class="bg-white rounded-2xl shadow border border-gray-100 p-8">
+                    <div class="text-agro-main mb-4"><i data-lucide="layers" class="w-12 h-12"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Dataset: PlantVillage</h3>
+                    <p class="text-gray-600 mb-6">El modelo fue entrenado con una de las bases de datos agrícolas más reconocidas a nivel mundial.</p>
+                    <div class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <span class="block text-3xl font-black text-agro-dark">+50,000</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wide font-bold">Imágenes procesadas</span>
+                        </div>
+                        <div class="bg-gray-50 p-4 rounded-xl">
+                            <span class="block text-3xl font-black text-agro-dark">38</span>
+                            <span class="text-xs text-gray-500 uppercase tracking-wide font-bold">Clases de enfermedades</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Tecnología -->
+                <div class="bg-white rounded-2xl shadow border border-gray-100 p-8">
+                    <div class="text-blue-600 mb-4"><i data-lucide="cpu" class="w-12 h-12"></i></div>
+                    <h3 class="text-2xl font-bold mb-2">Tecnología Base</h3>
+                    <p class="text-gray-600 mb-4">Utilizamos <strong>Redes Neuronales Convolucionales (CNN)</strong> para extraer patrones visuales automáticamente.</p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-50 text-blue-700 rounded-lg text-sm font-semibold border border-blue-100">Python</span>
+                        <span class="px-3 py-1 bg-orange-50 text-orange-700 rounded-lg text-sm font-semibold border border-orange-100">TensorFlow</span>
+                        <span class="px-3 py-1 bg-red-50 text-red-700 rounded-lg text-sm font-semibold border border-red-100">Keras</span>
+                        <span class="px-3 py-1 bg-green-50 text-green-700 rounded-lg text-sm font-semibold border border-green-100">OpenCV</span>
+                        <span class="px-3 py-1 bg-purple-50 text-purple-700 rounded-lg text-sm font-semibold border border-purple-100">Streamlit</span>
+                        <span class="px-3 py-1 bg-cyan-50 text-cyan-700 rounded-lg text-sm font-semibold border border-cyan-100">API Climática</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: FLUJO DE FUNCIONAMIENTO -->
+        <section class="fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-agro-dark flex items-center justify-center gap-3">
+                    <i data-lucide="git-merge" class="text-agro-main w-8 h-8"></i>
+                    ¿Cómo Funciona?
+                </h2>
+                <p class="text-gray-600 mt-2">El pipeline de datos desde el campo hasta la recomendación.</p>
+            </div>
+
+            <!-- Diagrama de Flujo (Basado en el documento) -->
+            <div class="max-w-2xl mx-auto flex flex-col items-center relative">
+                
+                <!-- 1 -->
+                <div class="w-full text-center relative flow-line pb-8">
+                    <div class="bg-agro-dark text-white font-bold py-2 px-6 rounded-full inline-block shadow-lg">AGRICULTOR</div>
+                </div>
+                
+                <!-- 2 -->
+                <div class="w-full relative flow-line pb-8 flex flex-col items-center">
+                    <div class="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center border-2 border-agro-main mb-2 z-10">
+                        <i data-lucide="camera" class="text-agro-main"></i>
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-xl shadow-sm border border-gray-100 font-semibold">Carga de Imagen</div>
+                </div>
+
+                <!-- 3 -->
+                <div class="w-full relative flow-line pb-8 flex flex-col items-center">
+                    <div class="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center border-2 border-agro-main mb-2 z-10">
+                        <i data-lucide="settings-2" class="text-agro-main"></i>
+                    </div>
+                    <div class="bg-white px-6 py-3 rounded-xl shadow-sm border border-gray-100 font-semibold text-center">
+                        Preprocesamiento<br>
+                        <span class="text-xs font-normal text-gray-500">(Redimensionamiento, Normalización)</span>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="w-full relative flow-line pb-12 flex flex-col items-center">
+                    <div class="w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center border-2 border-agro-main mb-2 z-10">
+                        <i data-lucide="network" class="text-agro-main"></i>
+                    </div>
+                    <div class="bg-agro-main text-white px-6 py-3 rounded-xl shadow-md font-bold">Modelo CNN</div>
+                </div>
+
+                <!-- Bifurcación (Diagnóstico & API) -->
+                <div class="w-full flex justify-between relative pb-12">
+                    <!-- Conectores visuales para la bifurcación -->
+                    <div class="absolute top-0 left-1/2 w-1/2 h-px bg-agro-main -translate-x-full"></div>
+                    <div class="absolute top-0 right-1/2 w-1/2 h-px bg-agro-main"></div>
+                    <div class="absolute top-0 left-1/4 w-px h-8 bg-agro-main"></div>
+                    <div class="absolute top-0 right-1/4 w-px h-8 bg-agro-main"></div>
+
+                    <!-- Diagnóstico -->
+                    <div class="w-1/2 flex flex-col items-center pt-8">
+                        <div class="bg-white p-4 rounded-xl shadow-md border-t-4 border-blue-500 text-center w-11/12">
+                            <i data-lucide="microscope" class="w-8 h-8 text-blue-500 mx-auto mb-2"></i>
+                            <div class="font-bold">Diagnóstico</div>
+                            <div class="text-xs text-gray-500">Enfermedad detectada</div>
+                        </div>
+                    </div>
+                    
+                    <!-- API Climática -->
+                    <div class="w-1/2 flex flex-col items-center pt-8">
+                        <div class="bg-white p-4 rounded-xl shadow-md border-t-4 border-agro-accent text-center w-11/12">
+                            <i data-lucide="cloud-sun-rain" class="w-8 h-8 text-agro-accent mx-auto mb-2"></i>
+                            <div class="font-bold">API Climática</div>
+                            <div class="text-xs text-gray-500">Humedad, Lluvia, Temp.</div>
+                        </div>
+                    </div>
+
+                    <!-- Unión hacia abajo -->
+                    <div class="absolute bottom-0 left-1/2 w-px h-8 bg-agro-main"></div>
+                    <div class="absolute bottom-8 left-1/4 w-px h-8 bg-agro-main"></div>
+                    <div class="absolute bottom-8 right-1/4 w-px h-8 bg-agro-main"></div>
+                    <div class="absolute bottom-8 left-1/4 w-1/2 h-px bg-agro-main translate-x-0"></div>
+                </div>
+
+                <!-- 5 -->
+                <div class="w-full relative flow-line pb-8 flex flex-col items-center mt-4">
+                    <div class="bg-white px-8 py-4 rounded-xl shadow-md border border-gray-200 font-bold text-center">
+                        <i data-lucide="activity" class="text-red-500 mx-auto mb-1 w-6 h-6"></i>
+                        Análisis de Riesgo
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="w-full relative flow-line pb-8 flex flex-col items-center">
+                    <div class="bg-white px-8 py-4 rounded-xl shadow-md border border-gray-200 font-bold text-center">
+                        <i data-lucide="trending-down" class="text-orange-500 mx-auto mb-1 w-6 h-6"></i>
+                        Predicción de Impacto
+                        <span class="block text-xs font-normal text-gray-500">(Estimación de pérdidas)</span>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="w-full relative flow-line pb-8 flex flex-col items-center">
+                    <div class="bg-white px-8 py-4 rounded-xl shadow-md border border-agro-main font-bold text-center">
+                        <i data-lucide="clipboard-check" class="text-agro-main mx-auto mb-1 w-6 h-6"></i>
+                        Recomendaciones
+                    </div>
+                </div>
+
+                <!-- Final -->
+                <div class="w-full text-center relative">
+                    <div class="bg-agro-dark text-white font-bold py-2 px-8 rounded-full inline-block shadow-lg">USUARIO</div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: VISIÓN A FUTURO -->
+        <section class="fade-in bg-gray-900 text-white rounded-3xl p-10 shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 right-0 opacity-10">
+                <i data-lucide="rocket" class="w-64 h-64 transform rotate-12 translate-x-10 -translate-y-10"></i>
+            </div>
+            <div class="relative z-10">
+                <h2 class="text-3xl font-bold text-agro-accent mb-8">El Futuro de AgroVision AI</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div>
+                        <i data-lucide="smartphone" class="w-10 h-10 text-agro-main mb-3"></i>
+                        <h4 class="font-bold text-lg mb-1">App Móvil Nativa</h4>
+                        <p class="text-sm text-gray-400">Desarrollo para Android e iOS para uso directo en el campo.</p>
+                    </div>
+                    <div>
+                        <i data-lucide="wifi-off" class="w-10 h-10 text-agro-main mb-3"></i>
+                        <h4 class="font-bold text-lg mb-1">Modo Offline</h4>
+                        <p class="text-sm text-gray-400">Funcionamiento sin internet para zonas rurales alejadas.</p>
+                    </div>
+                    <div>
+                        <i data-lucide="map" class="w-10 h-10 text-agro-main mb-3"></i>
+                        <h4 class="font-bold text-lg mb-1">Mapas de Riesgo</h4>
+                        <p class="text-sm text-gray-400">Geolocalización para predecir brotes en regiones completas.</p>
+                    </div>
+                    <div>
+                        <i data-lucide="sprout" class="w-10 h-10 text-agro-main mb-3"></i>
+                        <h4 class="font-bold text-lg mb-1">Más Cultivos</h4>
+                        <p class="text-sm text-gray-400">Ampliar el dataset con fotos de campo reales y nuevas enfermedades.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-200 py-10 mt-12">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <h3 class="font-bold text-xl text-agro-dark mb-1">Los Benditos</h3>
+                <p class="text-sm text-gray-500">Callanaupa • Jancco • Quispe • Paredes • Lerma</p>
+                <p class="text-xs text-gray-400 mt-1">Ing. Hugo Espetia Huamanga - NRC: 59118</p>
+            </div>
+            <div class="text-right">
+                <p class="text-sm font-semibold text-gray-700">Cusco - Perú</p>
+                <p class="text-sm text-gray-500">2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script para renderizar íconos y animaciones -->
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // Lógica para animaciones al hacer scroll (fade-in)
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
